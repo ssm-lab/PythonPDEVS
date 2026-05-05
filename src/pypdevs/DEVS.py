@@ -764,13 +764,15 @@ class RootDEVS(BaseDEVS):
         :param scheduler_type: type of scheduler to use (string representation)
         """
         if isinstance(scheduler_type, tuple):
+            g = {}
             try:
-                exec("from pypdevs.schedulers.%s import %s" % scheduler_type)
+                exec("from pypdevs.schedulers.%s import %s" % scheduler_type, g)
             except:
-                exec("from %s import %s" % scheduler_type)
+                exec("from %s import %s" % scheduler_type, g)
             nr_models = len(self.models)
+            g.update({'self': self, 'EPSILON': EPSILON, 'nr_models': nr_models})
             self.scheduler = eval("%s(self.component_set, EPSILON, nr_models)"
-                                  % scheduler_type[1])
+                                  % scheduler_type[1], g)
         else:
             raise DEVSException("Unknown Scheduler: " + str(scheduler_type))
 
