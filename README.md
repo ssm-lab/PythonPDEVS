@@ -7,6 +7,12 @@ cd src
 python setup.py install --user
 ```
 
+Relationship with the original distribution
+-------------------------------------------
+
+This is a fork from the last available/accessible official distribution from MSDL, University of Antwerp, from cca. 2026 April. Gradual improvements are ported back to this distribution. The list of changes can be reproduced from the closed issues.
+
+
 Performance
 -----------
 
